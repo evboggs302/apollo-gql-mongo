@@ -1,0 +1,20 @@
+{
+  "name": "apollo-gql-example",
+  "version": "1.0.0",
+  "description": "My first ApolloGraphQL app",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "evboggs302",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-core": "^3.6.7",
+    "apollo-server-express": "^3.6.7",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.0"
+  }
+}
