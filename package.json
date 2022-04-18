@@ -11,6 +11,8 @@
   "author": "evboggs302",
   "license": "ISC",
   "dependencies": {
+    "@graphql-tools/merge": "^8.2.9",
+    "@graphql-tools/schema": "^8.3.9",
     "apollo-datasource": "^3.3.1",
     "apollo-server-core": "^3.6.7",
     "apollo-server-express": "^3.6.7",

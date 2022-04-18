@@ -5,3 +5,11 @@ export const getAllUsers = (parent, args, context, info) => {
     return users.map((u) => ({ ...u._doc }));
   });
 };
+
+export const getSingleUser = (parent, args, context, info) => {
+  const { id } = args;
+  return User.findById(id).then((user) => {
+    // const { _id, name, email } = user;
+    return user;
+  });
+};

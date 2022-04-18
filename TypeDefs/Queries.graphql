@@ -1,0 +1,8 @@
+type Query {
+  allUsers: [User]
+  user(id: ID!): User
+  commentsByMovie(id: ID!): [Comment]
+  comment(id: ID!): Comment
+  allMovies: [Movie]
+  movie(id: ID!): Movie
+}

@@ -5,7 +5,7 @@ import { createServer } from "http";
 import mongoose from "mongoose";
 import path from "path";
 import dotenv from "dotenv";
-import { getAllUsers } from "./Resolvers/UserResolver.js";
+import { getAllUsers, getSingleUser } from "./Resolvers/UserResolver.js";
 
 // Parsing the env file.
 dotenv.config({ path: path.resolve(".env") });
@@ -13,11 +13,12 @@ const { PORT, MONGO_URI } = process.env;
 
 const typeDefs = gql`
   type Query {
-    users: [Users]
+    allUsers: [User]
+    user(id: ID!): User
   }
-  type Users {
+  type User {
     _id: ID!
-    name: String!
+    name: String
     email: String
     password: String
   }
@@ -25,8 +26,10 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    users: getAllUsers,
+    allUsers: getAllUsers,
+    user: getSingleUser,
   },
+  // Mutation: {},
 };
 
 const app = express();

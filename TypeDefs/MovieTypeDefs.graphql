@@ -1,0 +1,47 @@
+type Movie {
+  _id: ID!
+  title: String
+  awards: Award
+  cast: [String]
+  countries: [String]
+  directors: [String]
+  plot: String
+  fullPlot: String
+  genres: [String]
+  imdb: IMDB_Info
+  type: String
+  languages: [String]
+  lastUpdated: Date
+  year: Number
+  num_mflix_comments: Number
+  poster: String
+  rated: String
+  released: Date
+  runtime: Number
+  tomatoes: Tomato
+  writers: [String]
+}
+
+type Award {
+  wins: Number
+  nominations: Number
+  text: String
+}
+
+type IMDB_Info {
+  rating: Float
+  votes: Number
+  id: Number
+}
+
+type Tomato {
+  viewer: Tomato_viewer
+  production: String
+  lastUpdated: Date
+}
+
+type Tomato_viewer {
+  rating: Float
+  numReviews: Number
+  meter: Number
+}
