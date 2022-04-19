@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema(
   {
     _id: mongoose.Schema.Types.ObjectId,
@@ -18,4 +18,4 @@ const userSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-export default mongoose.model("User", userSchema, "users"); // modelName, schemaName, collectionName
+module.exports = mongoose.model("User", userSchema, "users"); // modelName, schemaName, collectionName

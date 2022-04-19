@@ -1,9 +1,13 @@
-type Comment {
-    _id: ID!
-    date: Date
-    email: String
-    movie_id: ID
-    name: String
-    text: String
+type Query {
+  commentsByMovie(id: ID!): [Comment]
+  comment(id: ID!): Comment
 }
 
+type Comment {
+  _id: ID!
+  date: String
+  email: String
+  movie_id: ID
+  name: String
+  text: String
+}

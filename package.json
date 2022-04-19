@@ -2,7 +2,6 @@
   "name": "apollo-gql-example",
   "version": "1.0.0",
   "description": "My first ApolloGraphQL app",
-  "type": "module",
   "main": "index.mjs",
   "scripts": {
     "start": "nodemon",
@@ -11,9 +10,8 @@
   "author": "evboggs302",
   "license": "ISC",
   "dependencies": {
+    "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/merge": "^8.2.9",
-    "@graphql-tools/schema": "^8.3.9",
-    "apollo-datasource": "^3.3.1",
     "apollo-server-core": "^3.6.7",
     "apollo-server-express": "^3.6.7",
     "dotenv": "^16.0.0",

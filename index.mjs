@@ -1,42 +1,22 @@
 import express from "express";
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
 import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import { createServer } from "http";
 import mongoose from "mongoose";
 import path from "path";
 import dotenv from "dotenv";
-import { getAllUsers, getSingleUser } from "./Resolvers/UserResolver.js";
+import CombinedTypes from "./TypeDefs/index.js";
+import CombinedResolvers from "./Resolvers/index.js";
 
 // Parsing the env file.
 dotenv.config({ path: path.resolve(".env") });
 const { PORT, MONGO_URI } = process.env;
 
-const typeDefs = gql`
-  type Query {
-    allUsers: [User]
-    user(id: ID!): User
-  }
-  type User {
-    _id: ID!
-    name: String
-    email: String
-    password: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    allUsers: getAllUsers,
-    user: getSingleUser,
-  },
-  // Mutation: {},
-};
-
 const app = express();
 const httpServer = createServer(app);
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  typeDefs: CombinedTypes,
+  resolvers: CombinedResolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 await server.start();

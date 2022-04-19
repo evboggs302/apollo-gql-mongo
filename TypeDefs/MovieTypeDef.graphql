@@ -1,3 +1,8 @@
+type Query {
+  allMovies: [Movie]
+  movie(id: ID!): Movie
+}
+
 type Movie {
   _id: ID!
   title: String
@@ -11,37 +16,37 @@ type Movie {
   imdb: IMDB_Info
   type: String
   languages: [String]
-  lastUpdated: Date
-  year: Number
-  num_mflix_comments: Number
+  lastUpdated: String
+  year: Int
+  num_mflix_comments: Int
   poster: String
   rated: String
-  released: Date
-  runtime: Number
+  released: String
+  runtime: Int
   tomatoes: Tomato
   writers: [String]
 }
 
 type Award {
-  wins: Number
-  nominations: Number
+  wins: Int
+  nominations: Int
   text: String
 }
 
 type IMDB_Info {
   rating: Float
-  votes: Number
-  id: Number
+  votes: Int
+  id: Int
 }
 
 type Tomato {
   viewer: Tomato_viewer
   production: String
-  lastUpdated: Date
+  lastUpdated: String
 }
 
 type Tomato_viewer {
   rating: Float
-  numReviews: Number
-  meter: Number
+  numReviews: Int
+  meter: Int
 }
