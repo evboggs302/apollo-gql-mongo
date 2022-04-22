@@ -1,5 +1,5 @@
 type Query {
-  allMovies: [Movie]
+  movies(_id: ID, title: String, year: Int): [Movie]
   movie(id: ID!): Movie
 }
 
@@ -25,6 +25,7 @@ type Movie {
   runtime: Int
   tomatoes: Tomato
   writers: [String]
+  comments: [Comment]
 }
 
 type Award {

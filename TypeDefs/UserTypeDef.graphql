@@ -1,0 +1,10 @@
+type Query {
+  allUsers: [User]
+  user(id: ID!): User
+}
+type User {
+  _id: ID
+  name: String
+  email: String
+  comments: [Comment]
+}
