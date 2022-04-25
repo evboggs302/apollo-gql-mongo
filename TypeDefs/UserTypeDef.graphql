@@ -2,9 +2,16 @@ type Query {
   allUsers: [User]
   user(id: ID!): User
 }
+
+type Mutation {
+  addFavMovie(user_id: ID, movie_id: ID): User
+  removeFavMovie(user_id: ID, movie_id: ID): User
+}
+
 type User {
   _id: ID
   name: String
   email: String
   comments: [Comment]
+  favorites: [String]
 }

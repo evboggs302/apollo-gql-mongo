@@ -1,6 +1,5 @@
 type Query {
   movies(_id: ID, title: String, year: Int): [Movie]
-  movie(id: ID!): Movie
 }
 
 type Movie {
@@ -13,7 +12,7 @@ type Movie {
   plot: String
   fullPlot: String
   genres: [String]
-  imdb: IMDB_Info
+  imdb: ImdbInfo
   type: String
   languages: [String]
   lastUpdated: String
@@ -34,19 +33,19 @@ type Award {
   text: String
 }
 
-type IMDB_Info {
+type ImdbInfo {
   rating: Float
   votes: Int
   id: Int
 }
 
 type Tomato {
-  viewer: Tomato_viewer
+  viewer: TomatoViewer
   production: String
   lastUpdated: String
 }
 
-type Tomato_viewer {
+type TomatoViewer {
   rating: Float
   numReviews: Int
   meter: Int

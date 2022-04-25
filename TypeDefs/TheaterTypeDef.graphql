@@ -1,0 +1,82 @@
+type Query {
+  theaters(id: ID, theaterId: Int): [Theater]
+}
+
+type Theater {
+  _id: ID
+  theaterId: Int
+  location: Location
+}
+
+type Location {
+  address: Address
+  #   geo: CoordinateInfo
+}
+
+type CoordinateInfo {
+  type: String
+  coordinates: [Float]
+}
+
+type Address {
+  street1: String
+  street2: String
+  city: String
+  state: AllowedStates
+  zipcode: String
+}
+
+enum AllowedStates {
+  AL
+  AK
+  AZ
+  AR
+  CA
+  CO
+  CT
+  DC
+  DE
+  FL
+  GA
+  HI
+  ID
+  IL
+  IN
+  IA
+  KS
+  KY
+  LA
+  ME
+  MD
+  MA
+  MI
+  MN
+  MS
+  MO
+  MT
+  NE
+  NV
+  NH
+  NJ
+  NM
+  NY
+  NC
+  ND
+  OH
+  OK
+  OR
+  PA
+  PR
+  RI
+  SC
+  SD
+  TN
+  TX
+  UT
+  VT
+  VA
+  WA
+  WV
+  WI
+  WY
+}

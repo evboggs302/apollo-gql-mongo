@@ -8,12 +8,6 @@ module.exports = {
         return films.map((u) => ({ ...u._doc }));
       });
     },
-    movie: (parent, args, context, info) => {
-      const { id } = args;
-      return Movie.findById(id).then((film) => {
-        return film;
-      });
-    },
   },
   Movie: {
     comments: (parent, args, context, info) => {
