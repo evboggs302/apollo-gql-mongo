@@ -4,6 +4,7 @@ type Query {
 }
 
 type Mutation {
+  addNewUser(new_user: UserInput): User
   addFavMovie(user_id: ID, movie_id: ID): User
   removeFavMovie(user_id: ID, movie_id: ID): User
 }
@@ -14,4 +15,10 @@ type User {
   email: String
   comments: [Comment]
   favorites: [String]
+}
+
+input UserInput {
+  name: String
+  email: String
+  password: String
 }

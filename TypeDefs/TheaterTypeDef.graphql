@@ -1,5 +1,5 @@
 type Query {
-  theaters(id: ID, theaterId: Int): [Theater]
+  theaters(id: ID, theater_id: Int): [Theater]
 }
 
 type Theater {

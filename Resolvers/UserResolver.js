@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Bcrypt = require("bcryptjs");
 const User = require("../models/users.js");
 const Comment = require("../models/comments.js");
 const Movie = require("../models/movies.js");
@@ -33,6 +34,23 @@ module.exports = {
     },
   },
   Mutation: {
+    addNewUser: async (parent, args, context, info) => {
+      const { name, email, password } = args.new_user;
+      const hashedPw = Bcrypt.hashSync(password, 12);
+      const id = new mongoose.Types.ObjectId();
+      const newUser = new User({
+        _id: id,
+        name: name,
+        email: email,
+        password: hashedPw,
+        favorites: [],
+      });
+      await newUser.save();
+      return User.findById(id).then((user) => {
+        delete user.password;
+        return user;
+      });
+    },
     addFavMovie: async (parent, args, context, info) => {
       const { user_id, movie_id } = args;
       const u_id = mongoose.Types.ObjectId(user_id);
