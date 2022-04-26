@@ -23,7 +23,13 @@ const server = new ApolloServer({
   formatError: ErrHandler,
 });
 await server.start();
-server.applyMiddleware({ app });
+
+const corsOptions = {
+  origin: "https://studio.apollographql.com",
+  credentials: true,
+};
+
+server.applyMiddleware({ app, cors: corsOptions });
 
 app.listen({ port: PORT }, () => {
   return mongoose
