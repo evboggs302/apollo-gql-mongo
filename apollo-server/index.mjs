@@ -10,7 +10,7 @@ import CombinedResolvers from "./Resolvers/index.js";
 import ErrHandler from "./ErrHandler.js";
 
 // Parsing the env file.
-dotenv.config({ path: path.resolve(".env") });
+dotenv.config({ path: path.resolve("../.env") });
 const { PORT, MONGO_URI } = process.env;
 
 const app = express();
