@@ -1,12 +1,18 @@
 type Query {
   allUsers: [User]
-  user(id: ID!): User
+  user(id: ID!): UserOrUserErr
 }
 
 type Mutation {
-  addNewUser(new_user: UserInput): User
+  addNewUser(new_user: UserInput): UserOrUserErr
   addFavMovie(user_id: ID, movie_id: ID): User
   removeFavMovie(user_id: ID, movie_id: ID): User
+}
+union UserOrUserErr = User | UserErr
+type UserErr {
+  code: String
+  originalMsg: String
+  token: String
 }
 
 type User {

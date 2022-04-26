@@ -1,3 +1,4 @@
+const { ApolloError } = require("apollo-server-express");
 const mongoose = require("mongoose");
 const Bcrypt = require("bcryptjs");
 const User = require("../models/users.js");
@@ -17,20 +18,21 @@ module.exports = {
         });
     },
     user: (parent, args, context, info) => {
-      const { id } = args;
-      return User.findById(id).then((user) => {
-        // const { _id, name, email } = user;
-        delete user.password;
-        return user;
-      });
-    },
-  },
-  User: {
-    comments: (parent, args, context, info) => {
-      const { email } = parent;
-      return Comment.find({ email }).then((comments) => {
-        return comments.map((u) => ({ ...u._doc }));
-      });
+      try {
+        const { id } = args;
+        return User.findById(mongoose.Types.ObjectId(id)).then((user) => {
+          delete user.password;
+          return user;
+        });
+      } catch (err) {
+        return new ApolloError("Unable to find user.", "NOT_FOUND", {
+          token: "some_unique_token",
+          originalErrMsg: err.message,
+        });
+
+        // Alternative to above way of throwing errors to client
+        // return { code: "", originalErrMsg: "", token: "" };
+      }
     },
   },
   Mutation: {
@@ -73,6 +75,22 @@ module.exports = {
         delete user.password;
         return user;
       });
+    },
+  },
+  User: {
+    comments: (parent, args, context, info) => {
+      const { email } = parent;
+      return Comment.find({ email }).then((comments) => {
+        return comments.map((u) => ({ ...u._doc }));
+      });
+    },
+  },
+  UserOrUserErr: {
+    __resolveType(obj) {
+      if (obj.code) {
+        return "Error";
+      }
+      return "User";
     },
   },
 };
